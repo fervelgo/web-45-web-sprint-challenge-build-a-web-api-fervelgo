@@ -30,12 +30,15 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', validateProjectId, (req, res, next) => {
-    Projects.update(req.params.id, req.project)
-    .then(updatedProject => {
-        res.json(updatedProject)
+    Projects.update(req.params.id, req.body)
+    .then(updatedAction => {
+        res.json(updatedAction)
     })
-    .catch(next)
-})
+    .catch(() => {
+        res.status(400).json({message: "Missing info"})
+        next()
+    })
+});
 
 router.delete('/:id', validateProjectId, async (req, res, next) => {
   try {

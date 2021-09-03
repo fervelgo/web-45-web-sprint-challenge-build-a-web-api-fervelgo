@@ -32,7 +32,10 @@ router.put('/:id', validateActionId, (req, res, next) => {
     .then(updatedAction => {
         res.json(updatedAction)
     })
-    .catch(next)
+    .catch(() => {
+        res.status(400).json({message: "Missing info"})
+        next()
+    })
 });
 
 router.delete('/:id', validateActionId, async (req, res, next) => {
