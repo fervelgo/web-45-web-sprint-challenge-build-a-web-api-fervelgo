@@ -20,7 +20,7 @@ router.get('/:id', validateActionId, (req, res) => {
 })
 
 router.post('/', validateAction, (req, res, next) => {
-    Actions.insert(req.action)
+    Actions.insert(req.body)
     .then(newAction => {
         res.status(201).json(newAction)
     })

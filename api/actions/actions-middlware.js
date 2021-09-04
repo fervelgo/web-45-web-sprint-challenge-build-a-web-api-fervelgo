@@ -1,4 +1,5 @@
 // add middlewares here related to actions
+const { json } = require('express')
 const Action = require('./actions-model')
 
 
@@ -22,8 +23,7 @@ function validateAction(req, res, next) {
       if (!project_id || !description || !notes) {
         res.status(400).json({message: "Action is missing requires fields"})
       } else {
-        req.action = req.body
-        next()
+        res.json(req.body)
       }
     }
 
