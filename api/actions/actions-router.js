@@ -19,8 +19,8 @@ router.get('/:id', validateActionId, (req, res) => {
     res.json(req.action)
 })
 
-router.post('/', validateAction, (req, res, next) => {
-    Actions.insert(req.body)
+router.post('/', validateAction, async (req, res, next) => {
+    await Actions.insert(req.body)
     .then(newAction => {
         res.status(201).json(newAction)
     })
